@@ -1,5 +1,6 @@
-﻿'use strict';
-app.controller('placesExplorerController', function ($scope, placesExplorerService, placesPhotosService, placesDataService, $filter, $modal) {
+﻿
+'use strict';
+app.controller('placesExplorerController', function ($scope, placesExplorerService, placesPhotosService, placesDataService, $filter, $modal, $location, $resource, $log) {
 
     $scope.exploreNearby = "New York";
     $scope.exploreQuery = "";
@@ -20,13 +21,19 @@ app.controller('placesExplorerController', function ($scope, placesExplorerServi
 
         createWatche();
         getPlaces();
+        
+
+        
+        
+        
     }
 
     function getPlaces() {
 
        var offset = ($scope.pageSize) * ($scope.currentPage - 1);
 
-        placesExplorerService.get({ near: $scope.exploreNearby, query: $scope.exploreQuery, limit: $scope.pageSize, offset: offset }, function (placesResult) {
+       placesExplorerService.get({ near: $scope.exploreNearby, query: $scope.exploreQuery, limit: $scope.pageSize, offset: offset },
+           function (placesResult) {
 
             if (placesResult.response.groups) {
                 $scope.places = placesResult.response.groups[0].items;

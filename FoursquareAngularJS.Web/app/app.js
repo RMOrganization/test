@@ -9,7 +9,7 @@
 
 var app = angular.module('FoursquareApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'toaster', 'chieffancypants.loadingBar']);
 
-app.config(function ($routeProvider) {
+app.config(function ($routeProvider, $locationProvider) {
 
     $routeProvider.when("/explore", {
         controller: "placesExplorerController",
@@ -27,5 +27,6 @@ app.config(function ($routeProvider) {
     });
 
     $routeProvider.otherwise({ redirectTo: "/explore" });
+
 
 });
